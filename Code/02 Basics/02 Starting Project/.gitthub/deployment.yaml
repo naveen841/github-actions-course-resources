@@ -1,16 +1,27 @@
 name: deploy-test
-on: push
+on: [push, workflow_dispatch]
 jobs: 
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: first-massage
         uses: actions/checkout@v3
       - name: to install node
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+        run: echo "Installing Node.js"
       - name: to install dependencies 
-        run: npm install
+        run: echo "Installing dependencies"
       - name: to run test cases 
-        run: npm test
+        run: echo "Running test cases"
+  
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: first-massage
+        uses: actions/checkout@v3
+      - name: to install node
+        run: echo "Installing Node.js"
+      - name: to install dependencies 
+        run: echo "Installing dependencies"
+      - name: to deploy 
+        run: echo "Deploying application"
