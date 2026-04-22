@@ -1,0 +1,16 @@
+name: deploy-test
+on: push
+jobs: 
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: first-massage
+        uses: actions/checkout@v3
+      - name: to install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: to install dependencies 
+        run: npm install
+      - name: to run test cases 
+        run: npm test
