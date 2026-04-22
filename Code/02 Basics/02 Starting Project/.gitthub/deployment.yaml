@@ -24,4 +24,4 @@ jobs:
       - name: to install dependencies 
         run: echo "Installing dependencies"
       - name: to deploy 
-        run: echo "Deploying application"
+        run: echo "Deploying application 1"
