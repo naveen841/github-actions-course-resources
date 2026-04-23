@@ -1,6 +1,10 @@
 name: testing
 
-on: [push, workflow_dispatch]
+on: 
+  pull_request:
+    types: 
+      - opened
+  workflow_dispatch:
 
 jobs:
   build:
