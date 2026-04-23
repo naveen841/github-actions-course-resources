@@ -1,0 +1,38 @@
+name: testing
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: this first checkout
+        uses: actions/checkout@v3
+
+      - name: to install nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+        
+      - name: to build
+        run: npm run build
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: this first checkout
+        uses: actions/checkout@v3
+
+      - name: to test
+        run: npm test
+        
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: this first checkout for deploy
+        uses: actions/checkout@v3
+
+      - name: to deploy
+        run: npm run deploy
